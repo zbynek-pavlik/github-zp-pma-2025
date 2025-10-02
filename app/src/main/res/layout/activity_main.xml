@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#FAF7FB">
+
+    <!-- Řádek pro jméno a příjmení -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editTextJmeno"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Zadejte jméno"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray"/>
+
+        <EditText
+            android:id="@+id/editTextPrijmeni"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:hint="Zadejte příjmení"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray"/>
+    </LinearLayout>
+
+    <!-- Obec -->
+    <EditText
+        android:id="@+id/editTextObec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Zadejte obec"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/darker_gray"/>
+
+    <!-- Řádek pro věk a tlačítka -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <EditText
+            android:id="@+id/editTextVek"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Věk"
+            android:inputType="number"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray"/>
+
+        <Button
+            android:id="@+id/buttonOdeslat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Odeslat"
+            android:backgroundTint="#6A1B9A"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="8dp" />
+
+        <Button
+            android:id="@+id/buttonVymazat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vymazat"
+            android:backgroundTint="#D32F2F"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- Modrý box s textem -->
+    <LinearLayout
+        android:id="@+id/blueBox"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:background="#00BCD4"
+        android:layout_marginTop="16dp"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/textViewOutput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="text"
+            android:textSize="16sp"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+</LinearLayout>

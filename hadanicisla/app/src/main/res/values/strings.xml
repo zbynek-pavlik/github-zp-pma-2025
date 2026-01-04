@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Hádej číslo</string>
+    <string name="msg_intro">Zadej číslo od 1 do 100</string>
+    <string name="msg_nan">Musíš zadat číslo!</string>
+    <string name="msg_out_of_range">Číslo musí být v intervalu 1–100</string>
+    <string name="msg_bigger">Hledané číslo je větší</string>
+    <string name="msg_smaller">Hledané číslo je menší</string>
+    <string name="msg_correct">Správně! Generuji nové číslo…</string>
+    <string name="msg_new_game">Nová hra začala</string>
+    <string name="hint_guess">Tvůj tip</string>
+    <string name="btn_guess">Hádej</string>
+</resources>

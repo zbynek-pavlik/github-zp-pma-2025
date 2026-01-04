@@ -10,7 +10,8 @@ import com.example.myapp014asharedtasklist.databinding.ItemTaskBinding
 class TaskAdapter(
     private var tasks: List<Task>,
     private val onChecked: (Task) -> Unit,  // zavolá se při kliknutí na checkbox
-    private val onDelete: (Task) -> Unit     // zavolá se při kliknutí na ikonu smazání
+    private val onDelete: (Task) -> Unit,    // zavolá se při kliknutí na ikonu smazání
+    private val onEdit: (Task) -> Unit
 ) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     // ViewHolder drží jeden řádek seznamu (item_task.xml) a jeho view binding.
@@ -40,6 +41,10 @@ class TaskAdapter(
         // 3) Připoj listener znovu a pošli aktualizovaný task (se správnou hodnotou)
         holder.binding.checkCompleted.setOnCheckedChangeListener { _, isChecked ->
             onChecked(task.copy(completed = isChecked))
+        }
+
+        holder.binding.imageEdit.setOnClickListener {
+            onEdit(task)
         }
 
         holder.binding.imageDelete.setOnClickListener {

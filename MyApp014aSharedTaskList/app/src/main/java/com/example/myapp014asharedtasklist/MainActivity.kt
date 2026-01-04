@@ -1,10 +1,9 @@
 package com.example.myapp014asharedtasklist
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapp014asharedtasklist.databinding.ActivityMainBinding
 import com.google.firebase.Firebase
@@ -29,9 +28,9 @@ class MainActivity : AppCompatActivity() {
         adapter = TaskAdapter(
             tasks = emptyList(),
             onChecked = { updatedTask -> toggleCompleted(updatedTask) },
-            onDelete = { task -> deleteTask(task) }
+            onDelete = { task -> deleteTask(task) },
+            onEdit = { task -> showEditDialog(task) }     // ✅ nově
         )
-
         binding.recyclerViewTasks.adapter = adapter
         binding.recyclerViewTasks.layoutManager = LinearLayoutManager(this)
 
@@ -83,4 +82,32 @@ class MainActivity : AppCompatActivity() {
                 adapter.submitList(tasks)
             }
     }
+
+    private fun showEditDialog(task: Task) {
+        if (task.id.isBlank()) return
+
+        val input = EditText(this).apply {
+            setText(task.title)
+            setSelection(text.length)
+        }
+
+        AlertDialog.Builder(this)
+            .setTitle("Upravit úkol")
+            .setView(input)
+            .setPositiveButton("Uložit") { _, _ ->
+                val newTitle = input.text.toString().trim()
+                if (newTitle.isNotEmpty() && newTitle != task.title) {
+                    updateTaskTitle(task, newTitle)
+                }
+            }
+            .setNegativeButton("Zrušit", null)
+            .show()
+    }
+
+    private fun updateTaskTitle(task: Task, newTitle: String) {
+        db.collection("tasks")
+            .document(task.id)
+            .update("title", newTitle)
+    }
+
 }

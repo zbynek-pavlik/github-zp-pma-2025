@@ -29,19 +29,19 @@ class TaskAdapter(
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = tasks[position]
 
-        // Nastaví text úkolu
         holder.binding.textTitle.text = task.title
 
-        // Nastaví zaškrtnutí checkboxu podle hodnoty v objektu
+        // 1) Nejdřív odpoj listener (aby se nespustil při nastavování isChecked)
+        holder.binding.checkCompleted.setOnCheckedChangeListener(null)
+
+        // 2) Nastav stav checkboxu z dat
         holder.binding.checkCompleted.isChecked = task.completed
 
-        // Listener pro změnu stavu checkboxu
-        // Když uživatel změní stav, zavolá se funkce onChecked(task)
-        holder.binding.checkCompleted.setOnCheckedChangeListener { _, _ ->
-            onChecked(task)
+        // 3) Připoj listener znovu a pošli aktualizovaný task (se správnou hodnotou)
+        holder.binding.checkCompleted.setOnCheckedChangeListener { _, isChecked ->
+            onChecked(task.copy(completed = isChecked))
         }
 
-        // Listener pro smazání úkolu
         holder.binding.imageDelete.setOnClickListener {
             onDelete(task)
         }
